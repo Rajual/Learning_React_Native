@@ -13,7 +13,11 @@ export const CalculatorScreens = () => {
    }
 
    const numerAseembler = (textNumber: string) => {
-      setNumero(numero + textNumber);
+    //Not acepte double '.'.
+    if(numero.includes('.')&&(textNumber==='.')) return;
+
+
+    setNumero(numero+textNumber);
    }
 
    const positiveNegative=()=>{
