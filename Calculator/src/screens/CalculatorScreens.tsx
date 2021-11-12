@@ -12,43 +12,47 @@ export const CalculatorScreens = () => {
       setNumero('0');
    }
 
+   const numerAseembler=(textNumber:string)=>{
+setNumero(numero+textNumber);
+   }
+
    return (
         <View style={styles.calculatorContainer}>
             <Text style={styles.smallResult}>{smallNumber}</Text>
-            <Text style={styles.resultado}>{numero}</Text>
+            <Text style={styles.resultado} numberOfLines={1} adjustsFontSizeToFit>{numero}</Text>
             {/*Button row*/}
             <View style={styles.row}>
                <ButtonCalculator text="C" onPress={clean}/>
-               <ButtonCalculator text="+/-" />
-               <ButtonCalculator text="Del" />
-               <ButtonCalculator text="/"color="#FF9427"/>
+               <ButtonCalculator text="+/-" onPress={clean}/>
+               <ButtonCalculator text="Del" onPress={clean}/>
+               <ButtonCalculator text="/"color="#FF9427" onPress={clean}/>
             </View>
             {/*Button row*/}
             <View style={styles.row}>
-               <ButtonCalculator text="7" />
-               <ButtonCalculator text="8" />
-               <ButtonCalculator text="9" />
-               <ButtonCalculator text="X"color="#FF9427"/>
+               <ButtonCalculator text="7" onPress={numerAseembler}/>
+               <ButtonCalculator text="8" onPress={numerAseembler}/>
+               <ButtonCalculator text="9" onPress={numerAseembler}/>
+               <ButtonCalculator text="X"color="#FF9427" onPress={clean}/>
             </View>
             {/*Button row*/}
             <View style={styles.row}>
-               <ButtonCalculator text="5" />
-               <ButtonCalculator text="5" />
-               <ButtonCalculator text="6" />
-               <ButtonCalculator text="-"color="#FF9427"/>
+               <ButtonCalculator text="5" onPress={numerAseembler}/>
+               <ButtonCalculator text="5" onPress={numerAseembler}/>
+               <ButtonCalculator text="6" onPress={numerAseembler}/>
+               <ButtonCalculator text="-"color="#FF9427" onPress={clean}/>
             </View>
             {/*Button row*/}
             <View style={styles.row}>
-               <ButtonCalculator text="1" />
-               <ButtonCalculator text="2" />
-               <ButtonCalculator text="3" />
-               <ButtonCalculator text="+"color="#FF9427"/>
+               <ButtonCalculator text="1" onPress={numerAseembler}/>
+               <ButtonCalculator text="2" onPress={numerAseembler}/>
+               <ButtonCalculator text="3" onPress={numerAseembler}/>
+               <ButtonCalculator text="+"color="#FF9427" onPress={clean}/>
             </View>
             {/*Button row*/}
             <View style={styles.row}>
-               <ButtonCalculator text="0" expanded/>
-               <ButtonCalculator text="." />
-               <ButtonCalculator text="="color="#FF9427"/>
+               <ButtonCalculator text="0" expanded onPress={numerAseembler}/>
+               <ButtonCalculator text="." onPress={numerAseembler}/>
+               <ButtonCalculator text="="color="#FF9427" onPress={clean}/>
             </View>
             
         </View>

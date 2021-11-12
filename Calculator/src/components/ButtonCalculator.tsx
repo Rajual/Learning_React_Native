@@ -6,12 +6,12 @@ interface Props{
     text:string,
     color?:string,
     expanded?:boolean,
-    onPress?:() => void
+    onPress:(textNumber:string) => void
 }
 
 export const ButtonCalculator = ({text,color='#2D2D2D',expanded=false,onPress}:Props) => {
     return (
-        <TouchableOpacity onPress={onPress}>
+        <TouchableOpacity onPress={()=>onPress(text)}>
                     <View style={{...styles.button, backgroundColor:color, width:(expanded)?180:80}}>
             <Text style={{...styles.textButton, color:(color==='#9B9B9B')?'black':"white"}}>{text}</Text>
         </View>
