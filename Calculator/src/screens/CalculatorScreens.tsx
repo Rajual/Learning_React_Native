@@ -5,7 +5,8 @@ import { styles } from '../themes/appTheme';
 
 export const CalculatorScreens = () => {
    
-   const [numero, setNumero] = useState('100')
+   const [smallNumber, setSmallNumber] = useState('0')
+   const [numero, setNumero] = useState('0')
    
    const clean=()=>{
       setNumero('0');
@@ -13,7 +14,7 @@ export const CalculatorScreens = () => {
 
    return (
         <View style={styles.calculatorContainer}>
-            <Text style={styles.smallResult}>7,000</Text>
+            <Text style={styles.smallResult}>{smallNumber}</Text>
             <Text style={styles.resultado}>{numero}</Text>
             {/*Button row*/}
             <View style={styles.row}>
