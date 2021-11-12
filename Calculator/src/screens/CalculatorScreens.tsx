@@ -7,13 +7,17 @@ export const CalculatorScreens = () => {
    
    const [numero, setNumero] = useState('100')
    
+   const clean=()=>{
+      setNumero('0');
+   }
+
    return (
         <View style={styles.calculatorContainer}>
             <Text style={styles.smallResult}>7,000</Text>
             <Text style={styles.resultado}>{numero}</Text>
             {/*Button row*/}
             <View style={styles.row}>
-               <ButtonCalculator text="C" />
+               <ButtonCalculator text="C" onPress={clean}/>
                <ButtonCalculator text="+/-" />
                <ButtonCalculator text="Del" />
                <ButtonCalculator text="/"color="#FF9427"/>
