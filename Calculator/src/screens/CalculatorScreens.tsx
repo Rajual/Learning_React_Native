@@ -16,13 +16,14 @@ export const CalculatorScreens = () => {
       //Not acepte double '.'.
       if (numero.includes('.') && (textNumber === '.')) return;
       //Not acepte '00', '000...'
-      if (numero === '0' && textNumber === '0') return;
+      if ((numero === '0' || numero === '-0') && (textNumber === '0')) return;
       //Not acepte '02' or '0033', etc.
       if (numero === '0' && textNumber !== '0') {
-         setNumero(textNumber);
-         return;
+         if (textNumber !== '.') {
+            setNumero(textNumber);
+            return;
+         }
       }
-
       setNumero(numero + textNumber);
    }
 
@@ -34,6 +35,21 @@ export const CalculatorScreens = () => {
       }
    }
 
+   const deleteButton = () => {
+      if (numero.includes('-')) {
+         if (numero.length < 3) {
+            setNumero('0');
+            return;
+         }
+      } else {
+         if (numero.length < 2) {
+            setNumero('0');
+            return;
+         }
+      }
+      setNumero(numero.slice(0, -1));
+   }
+
    return (
       <View style={styles.calculatorContainer}>
          <Text style={styles.smallResult}>{smallNumber}</Text>
@@ -42,7 +58,7 @@ export const CalculatorScreens = () => {
          <View style={styles.row}>
             <ButtonCalculator text="C" onPress={clean} />
             <ButtonCalculator text="+/-" onPress={positiveNegative} />
-            <ButtonCalculator text="Del" onPress={clean} />
+            <ButtonCalculator text="Del" onPress={deleteButton} />
             <ButtonCalculator text="/" color="#FF9427" onPress={clean} />
          </View>
          {/*Button row*/}
