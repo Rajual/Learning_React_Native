@@ -13,18 +13,24 @@ export const CalculatorScreens = () => {
    }
 
    const numerAseembler = (textNumber: string) => {
-    //Not acepte double '.'.
-    if(numero.includes('.')&&(textNumber==='.')) return;
+      //Not acepte double '.'.
+      if (numero.includes('.') && (textNumber === '.')) return;
+      //Not acepte '00', '000...'
+      if (numero === '0' && textNumber === '0') return;
+      //Not acepte '02' or '0033', etc.
+      if (numero === '0' && textNumber !== '0') {
+         setNumero(textNumber);
+         return;
+      }
 
-
-    setNumero(numero+textNumber);
+      setNumero(numero + textNumber);
    }
 
-   const positiveNegative=()=>{
-      if(numero.includes('-')){
-         setNumero( numero.replace('-',''));
-      }else{
-         setNumero('-'+numero)
+   const positiveNegative = () => {
+      if (numero.includes('-')) {
+         setNumero(numero.replace('-', ''));
+      } else {
+         setNumero('-' + numero)
       }
    }
 
