@@ -1,15 +1,23 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { View, Text } from 'react-native';
 import { ButtonCalculator } from '../components/ButtonCalculator';
 import { styles } from '../themes/appTheme';
+
+enum MathOperation{
+   add, subtract, multiply, divide
+}
 
 export const CalculatorScreens = () => {
 
    const [smallNumber, setSmallNumber] = useState('0')
    const [numero, setNumero] = useState('0')
 
+   const lastOperation=useRef<MathOperation>();
+
+
    const clean = () => {
       setNumero('0');
+      setSmallNumber('0');
    }
 
    const numerAseembler = (textNumber: string) => {
@@ -50,37 +58,68 @@ export const CalculatorScreens = () => {
       setNumero(numero.slice(0, -1));
    }
 
+   const savePreviousNumber=()=>{
+      if(numero.endsWith('.')){
+         setSmallNumber(numero.slice(0,1));
+      }else{
+         setSmallNumber(numero);
+      }
+      
+      setNumero('0');
+   }
+
+   const operationDivide=()=>{
+      savePreviousNumber();
+      lastOperation.current=MathOperation.divide;
+   }
+
+   const operationMultiply=()=>{
+      savePreviousNumber();
+      lastOperation.current=MathOperation.multiply;
+   }
+
+   const operationSubtract=()=>{
+      savePreviousNumber();
+      lastOperation.current=MathOperation.subtract;
+   }
+
+   const operationAdd=()=>{
+      savePreviousNumber();
+      lastOperation.current=MathOperation.add;
+   }
+
+
    return (
       <View style={styles.calculatorContainer}>
-         <Text style={styles.smallResult}>{smallNumber}</Text>
+         {(smallNumber!=='0')&& <Text style={styles.smallResult}>{smallNumber}</Text>}
          <Text style={styles.resultado} numberOfLines={1} adjustsFontSizeToFit>{numero}</Text>
          {/*Button row*/}
          <View style={styles.row}>
             <ButtonCalculator text="C" onPress={clean} />
             <ButtonCalculator text="+/-" onPress={positiveNegative} />
             <ButtonCalculator text="Del" onPress={deleteButton} />
-            <ButtonCalculator text="/" color="#FF9427" onPress={clean} />
+            <ButtonCalculator text="/" color="#FF9427" onPress={operationDivide} />
          </View>
          {/*Button row*/}
          <View style={styles.row}>
             <ButtonCalculator text="7" onPress={numerAseembler} />
             <ButtonCalculator text="8" onPress={numerAseembler} />
             <ButtonCalculator text="9" onPress={numerAseembler} />
-            <ButtonCalculator text="X" color="#FF9427" onPress={clean} />
+            <ButtonCalculator text="X" color="#FF9427" onPress={operationMultiply} />
          </View>
          {/*Button row*/}
          <View style={styles.row}>
             <ButtonCalculator text="5" onPress={numerAseembler} />
             <ButtonCalculator text="5" onPress={numerAseembler} />
             <ButtonCalculator text="6" onPress={numerAseembler} />
-            <ButtonCalculator text="-" color="#FF9427" onPress={clean} />
+            <ButtonCalculator text="-" color="#FF9427" onPress={operationSubtract} />
          </View>
          {/*Button row*/}
          <View style={styles.row}>
             <ButtonCalculator text="1" onPress={numerAseembler} />
             <ButtonCalculator text="2" onPress={numerAseembler} />
             <ButtonCalculator text="3" onPress={numerAseembler} />
-            <ButtonCalculator text="+" color="#FF9427" onPress={clean} />
+            <ButtonCalculator text="+" color="#FF9427" onPress={operationAdd} />
          </View>
          {/*Button row*/}
          <View style={styles.row}>
