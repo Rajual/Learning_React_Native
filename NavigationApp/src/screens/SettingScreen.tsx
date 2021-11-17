@@ -1,10 +1,17 @@
 import React from 'react'
 import { Text, View } from 'react-native'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { styles } from '../themes/appTheme';
 
 export const SettingScreen = () => {
+
+    const insets=useSafeAreaInsets();
+
     return (
-        <View>
-            <Text>
+        <View style={{...styles.globalMargin,
+            marginTop: insets.top
+        }}>
+            <Text style={styles.title}>
                 Setting Screen
             </Text>
         </View>
