@@ -17,6 +17,7 @@
     "@react-navigation/material-top-tabs": "^5.x",
     "@react-navigation/native": "^5.x",
     "@react-navigation/stack": "^5.x",
+    "@types/react-native-vector-icons": "^6.4.10",
     "react": "17.0.2",
     "react-native": "0.66.3",
     "react-native-gesture-handler": "^1.10.3",
