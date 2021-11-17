@@ -1,6 +1,7 @@
 import { StackScreenProps } from '@react-navigation/stack';
 import React from 'react'
 import { View, Text, Button } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { styles } from '../themes/appTheme';
 
 interface Props extends StackScreenProps<any,any>{};
@@ -11,12 +12,45 @@ export const Pagina1Screen = ({navigation}:Props) => {
 
     return (
         <View style={styles.globalMargin}>
-            <Text>Pagina1Screen</Text>
+            <Text style={styles.title} >Pagina1Screen</Text>
 
             <Button
                 title="Ir a pagina 2"
                 onPress={()=>navigation.navigate('Pagina2Screen')}
             />
+
+            <Text>Navegar con argumentos</Text>
+
+            <TouchableOpacity
+            style={
+                {...styles.bigButton, backgroundColor:'#5856D6'}
+            }
+                onPress={()=>navigation.navigate('PersonaScreen',{
+                    id:1,
+                    name:'Julio'
+                })}
+            >
+                <Text
+                style={styles.textBigButton}
+                >Julio
+                </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+            style={
+                styles.bigButton
+            }
+                onPress={()=>navigation.navigate('PersonaScreen',{
+                    id:2,
+                    name:'Alfonso'
+                })}
+            >
+                <Text
+                style={styles.textBigButton}
+                >
+                    Alfonso
+                    </Text>
+            </TouchableOpacity>
         </View>
     )
 }
