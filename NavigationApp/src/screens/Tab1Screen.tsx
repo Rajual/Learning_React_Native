@@ -3,6 +3,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import { Text, View } from 'react-native'
 import { styles } from '../themes/appTheme';
+import { TouchableIcon } from '../components/TouchableIcon';
 
 
 
@@ -14,8 +15,7 @@ export const Tab1Screen = () => {
         <View style={styles.globalMargin}>
             <Text style={styles.title}>Icons</Text>
             <Text>
-                <Icon name="rocket" size={40} color="#900" />
-                <Icon name="accessibility-outline" size={40} color="#900"></Icon>
+                <TouchableIcon iconName="rocket"/>
             </Text>
         </View>
     )
