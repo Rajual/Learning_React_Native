@@ -16,6 +16,8 @@ export const Tab1Screen = () => {
             <Text style={styles.title}>Icons</Text>
             <Text>
                 <TouchableIcon iconName="rocket"/>
+                <TouchableIcon iconName="rocket"/>
+                <TouchableIcon iconName="rocket"/>
             </Text>
         </View>
     )
